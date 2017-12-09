@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginHorizontal="15dp"
+    android:layout_height="350dp"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/border"
+        tools:ignore="MissingConstraints"
+        >
+        
+        <Button
+            android:id="@+id/Feed_Agency"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:text="땡떙일보"/>
+
+        <Button
+            android:id="@+id/Feed_Hot"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:text="HOT글"/>
+
+    </RelativeLayout>
+
+
+    <ImageButton
+        android:id="@+id/Feed_Image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="제목을 한번 써보면 좋을듯 하다"
+        android:gravity="center"
+        android:background="@drawable/border"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="250dp"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="300dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/Feed_true"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:text="True:"
+            android:gravity="center"
+            android:layout_alignParentLeft="true"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/Feed_false"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:text="False:"
+            android:gravity="center"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/Feed_View"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:text="View:"
+            android:gravity="center"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/Feed_Time"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:text="Time"
+            android:gravity="center"
+            android:textSize="20dp"/>
+
+        <Button
+            android:id="@+id/Feed_Extras"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:text="..."
+            android:gravity="center"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.adds6.verite.List.UserInfoStruct;
+import com.example.adds6.verite.Newsfeed.NewsfeedActivity;
 import com.example.adds6.verite.R;
 import com.example.adds6.verite.Signup.SignActivity;
 import com.example.adds6.verite.Strategy.JsonDecoder;
@@ -23,6 +24,10 @@ import java.util.HashMap;
  */
 
 public class LoginActivity extends Activity {
+
+    //Intent 선언부
+    Intent loginIntent;
+    Intent signupintent;
 
     // 사용자 정보 JsonCode
     private static String UserInfo;
@@ -47,9 +52,6 @@ public class LoginActivity extends Activity {
         JsonDecoder jd = new UserJsonDecoder();
         userlist = jd.JsonDecoding(UserInfo);
 
-        // 가입 인텐트 생성
-        Intent signupintent;
-
         // 가입하기 버튼 선언
         Button signupButton = (Button) findViewById(R.id.joinbutton);
 
@@ -57,7 +59,7 @@ public class LoginActivity extends Activity {
         signupButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent signupintent = new Intent(LoginActivity.this, SignActivity.class);
+                signupintent = new Intent(LoginActivity.this, SignActivity.class);
                 startActivities(new Intent[]{signupintent});
             }
         });
@@ -81,8 +83,9 @@ public class LoginActivity extends Activity {
 
                 if(thisUserNum == -1) System.out.println("없는 사용자입니다.");
 
-                //Intent loginIntent = new Intent(LoginActivity.this, SignActivity.class);
-                //startActivities(new Intent[]{loginIntent});
+                loginIntent = new Intent(LoginActivity.this, NewsfeedActivity.class);
+                loginIntent.putExtra("UserNum",thisUserNum);
+                startActivities(new Intent[]{loginIntent});
 
             }
         });
