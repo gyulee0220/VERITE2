@@ -41,6 +41,8 @@ public class NewsfeedActivity extends Activity {
 
     protected int UserNum;
 
+    private static ArrayList<Integer> userScore = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -104,6 +106,10 @@ public class NewsfeedActivity extends Activity {
             }
         });
 
+        // 사용자 점수 가져오기
+        ScoreAdapter scoreAdapter = new ScoreAdapter();
+        scoreAdapter.Init(this);
+        scoreAdapter.execute("http://13.125.66.109/Resl_Usersocre.php?id="+UserNum);
 
         // 칼럼 가져오기
 
