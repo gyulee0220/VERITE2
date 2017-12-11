@@ -44,6 +44,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
+        android:id="@+id/Feed_title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="제목을 한번 써보면 좋을듯 하다"

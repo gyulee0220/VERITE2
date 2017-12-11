@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.adds6.verite.List.UserInfoStruct;
+import com.example.adds6.verite.Newsfeed.LoadingActivity;
 import com.example.adds6.verite.Newsfeed.NewsfeedActivity;
 import com.example.adds6.verite.R;
 import com.example.adds6.verite.Signup.SignActivity;
@@ -83,7 +84,7 @@ public class LoginActivity extends Activity {
 
                 if(thisUserNum == -1) System.out.println("없는 사용자입니다.");
 
-                loginIntent = new Intent(LoginActivity.this, NewsfeedActivity.class);
+                loginIntent = new Intent(LoginActivity.this, LoadingActivity.class);
                 loginIntent.putExtra("UserNum",thisUserNum);
                 startActivities(new Intent[]{loginIntent});
 

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.adds6.verite.Newsfeed.LoadingActivity;
 import com.example.adds6.verite.Newsfeed.NewsfeedActivity;
 import com.example.adds6.verite.R;
 import com.example.adds6.verite.Search.SearchActivity;
@@ -44,7 +45,7 @@ public class FavorityActivity extends Activity {
 
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(FavorityActivity.this,NewsfeedActivity.class);
+                Intent intent1 = new Intent(FavorityActivity.this,LoadingActivity.class);
                 intent1.putExtra("UserNum",UserNum);
                 startActivities(new Intent[]{intent1});
             }

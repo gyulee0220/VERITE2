@@ -22,8 +22,10 @@ public class ScoreAdapter extends AsyncTask<String, String, String> {
 
     public static ArrayList<Integer> userScore = new ArrayList<>();
 
-    public void Init(NewsfeedActivity na){
-        newsfeedActivity = na;
+    static LoadingActivity LA;
+
+    public void Init(LoadingActivity na){
+        this.LA = na;
     }
 
     public String doInBackground(String...urls){
@@ -71,7 +73,7 @@ public class ScoreAdapter extends AsyncTask<String, String, String> {
 
     public void onPostExecute(String result){
 
-        System.out.println("외부"+result);
+        //System.out.println("외부"+result);
 
         // 사용자 점수를 저장하는 변수
         ScoreJsonDecoder scoreJsonDecoder = new ScoreJsonDecoder();
@@ -79,7 +81,7 @@ public class ScoreAdapter extends AsyncTask<String, String, String> {
 
         // 칼럼을 불러오는 어댑터 호출
         ColumnAdapter columnAdapter = new ColumnAdapter();
-        columnAdapter.Init(newsfeedActivity,userScore);
+        columnAdapter.Init(LA,userScore);
 
     }
 

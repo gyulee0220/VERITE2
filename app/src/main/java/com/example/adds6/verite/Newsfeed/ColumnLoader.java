@@ -1,9 +1,21 @@
 package com.example.adds6.verite.Newsfeed;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.adds6.verite.List.ColumnInfoStruct;
 import com.example.adds6.verite.List.UserInfoStruct;
+import com.example.adds6.verite.Login.LoginActivity;
+import com.example.adds6.verite.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,11 +33,12 @@ import java.util.ArrayList;
 
 public class ColumnLoader extends AsyncTask<String, String, String>{
 
-    public NewsfeedActivity newsfeedActivity = new NewsfeedActivity();
-    public static int loadTime;
+    public Context newsfeedActivity;
+    public static ArrayList<ColumnInfoStruct> arrColumn = new ArrayList<>();
     public static String Resultphp;
 
     public ColumnInfoStruct tmpColumn;
+
     // 칼럼 정보를 담는 변수들
     public static int Column_ID;
     public static int Column_Agency;
@@ -39,13 +52,20 @@ public class ColumnLoader extends AsyncTask<String, String, String>{
     public static String Column_URL;
     public static String Column_Writer;
 
-    public void Init(NewsfeedActivity na, int time){
-        this.newsfeedActivity = na;
-        loadTime =time;
+    //public static boolean running = false;
+
+    public int time;
+
+    public static NewsfeedActivity LA;
+
+    public void Init(NewsfeedActivity c, int time){
+        this.LA = c;
+        this.time = time;
     }
 
     @Override
     protected String doInBackground(String... urls) {
+
         Resultphp = new String();
         BufferedReader bufferedReader;
 
@@ -71,7 +91,7 @@ public class ColumnLoader extends AsyncTask<String, String, String>{
                             System.out.println("End of file :" + i);
                             break;
                         }
-                        System.out.println("Success read php : "+line);
+                        System.out.println("Success final php : "+line);
                         i++;
                         Resultphp += line;
                     }
@@ -92,9 +112,7 @@ public class ColumnLoader extends AsyncTask<String, String, String>{
     @Override
     protected void onPostExecute(String s) {
         JsonDecoding(s);
-        System.out.println(loadTime);
-        FeedUILoader feedUILoader = new FeedUILoader(newsfeedActivity,loadTime,tmpColumn);
-        feedUILoader.OnLoadUI();
+        OnLoadUI();
     }
 
     public void JsonDecoding(String userscore) {
@@ -121,12 +139,56 @@ public class ColumnLoader extends AsyncTask<String, String, String>{
             // 사용자 구조체에 저장하기 시작
             tmpColumn = new ColumnInfoStruct(Column_ID, Column_Agency, Column_TItle, Column_Image, Column_Date, Column_TrueNum, Column_FalseNum, Column_Theme, Column_ViewNum, Column_URL, Column_Writer);
 
-            System.out.println("FInal"+Column_TItle);
-
         }
-        catch (JSONException e){
+        catch (Exception e){
             System.out.println("Json error");
         }
 
+    }
+
+    public void OnLoadUI(){
+        String feed = "feed" + String.valueOf(time+1);
+        System.out.println("009877"+feed);
+        int feedIndex = 11111;
+        View feedview = null;
+        Button button1 = null;
+        URL imageSource = null;
+        ImageButton imgButton = null;
+        TextView TextTrue = null;
+        TextView TextFalse = null;
+        TextView TextViewNum = null;
+        TextView TextDate = null;
+        TextView TextTitle = null;
+        try{
+            feedIndex = LA.getResources().getIdentifier(feed,"id",LA.getPackageName());
+            feedview =  LA.findViewById(feedIndex);
+            System.out.println("kddkdkdkdkd"+feedIndex);
+            button1 = feedview.findViewById(R.id.Feed_Agency);
+            imgButton = feedview.findViewById(R.id.Feed_Image);
+            if (Column_Image != null) {
+                imageSource = new URL(Column_Image);
+                Glide.with(LA).load(imageSource).into(imgButton);
+            }
+            TextTrue = feedview.findViewById(R.id.Feed_true);
+            TextFalse = feedview.findViewById(R.id.Feed_false);
+            TextViewNum = feedview.findViewById(R.id.Feed_View);
+            TextDate = feedview.findViewById(R.id.Feed_Time);
+            TextTitle = feedview.findViewById(R.id.Feed_title);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        SettingAgency settingAgency = new SettingAgency();
+        String Agency = settingAgency.settingAgency(Column_Agency);
+        button1.setText(Agency);
+        try {
+            TextTitle.setText(Column_TItle);
+            TextTrue.setText("True: " + String.valueOf(Column_TrueNum));
+            TextFalse.setText("False: " + String.valueOf(Column_FalseNum));
+            TextViewNum.setText("Views: " + String.valueOf(Column_ViewNum));
+            TextDate.setText(String.valueOf(Column_Date));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

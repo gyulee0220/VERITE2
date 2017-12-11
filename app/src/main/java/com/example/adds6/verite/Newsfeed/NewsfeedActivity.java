@@ -3,6 +3,7 @@ package com.example.adds6.verite.Newsfeed;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -21,15 +22,27 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.adds6.verite.Favorite.FavorityActivity;
+import com.example.adds6.verite.List.ColumnInfoStruct;
 import com.example.adds6.verite.List.UserInfoStruct;
 import com.example.adds6.verite.R;
 import com.example.adds6.verite.Search.SearchActivity;
+import com.example.adds6.verite.Strategy.ScoreJsonDecoder;
 import com.example.adds6.verite.setting.SettingActivity;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import devlight.io.library.ntb.NavigationTabBar;
 
@@ -38,6 +51,9 @@ import devlight.io.library.ntb.NavigationTabBar;
  */
 
 public class NewsfeedActivity extends Activity {
+
+    public static ArrayList<ColumnInfoStruct> arrColumn = new ArrayList<>();
+    public static int[] select;
 
     protected int UserNum;
 
@@ -51,8 +67,8 @@ public class NewsfeedActivity extends Activity {
         // 가입에 성공한 사용자 정보를 받아오는 부분
         Intent intent = getIntent();
         UserNum = intent.getIntExtra("UserNum",0);
-        // 삭제 필요
-        System.out.println(UserNum);
+        select = intent.getIntArrayExtra("selectColumn");
+        System.out.println("ddd"+UserNum);
 
         // 하단 버튼
         // 하단 바 버튼 선언
@@ -62,17 +78,16 @@ public class NewsfeedActivity extends Activity {
         Button ntb_setting = findViewById(R.id.ntb_Button4);
 
         // 뉴스피드 리스너
-        /*
         ntb_Newsfeed.setOnClickListener(new Button.OnClickListener(){
 
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(NewsfeedActivity.this,NewsfeedActivity.class);
+                Intent intent1 = new Intent(NewsfeedActivity.this,LoadingActivity.class);
                 intent1.putExtra("UserNum",UserNum);
                 startActivities(new Intent[]{intent1});
             }
         });
-        */
+
         // 관심글 리스너
         ntb_favorite.setOnClickListener(new Button.OnClickListener(){
 
@@ -106,16 +121,15 @@ public class NewsfeedActivity extends Activity {
             }
         });
 
-        // 사용자 점수 가져오기
-        ScoreAdapter scoreAdapter = new ScoreAdapter();
-        scoreAdapter.Init(this);
-        scoreAdapter.execute("http://13.125.66.109/Resl_Usersocre.php?id="+UserNum);
-
-        // 칼럼 가져오기
-
+        // 칼럼 로딩
+        for(int i=0;i<10;i++){
+            ColumnLoader columnLoader = new ColumnLoader();
+            columnLoader.Init(this,i);
+            System.out.println("fffffffffff"+i);
+            columnLoader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"http://13.125.66.109/Columnload.php?id=" + select[i]);
+        }
 
     }
-
 
 }
 
