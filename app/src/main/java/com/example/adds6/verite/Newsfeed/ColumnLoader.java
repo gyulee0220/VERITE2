@@ -37,7 +37,7 @@ public class ColumnLoader extends AsyncTask<String, String, String>{
     public static ArrayList<ColumnInfoStruct> arrColumn = new ArrayList<>();
     public static String Resultphp;
 
-    public ColumnInfoStruct tmpColumn;
+    public static ColumnInfoStruct tmpColumn;
 
     // 칼럼 정보를 담는 변수들
     public static int Column_ID;
@@ -51,8 +51,11 @@ public class ColumnLoader extends AsyncTask<String, String, String>{
     public static int Column_ViewNum;
     public static String Column_URL;
     public static String Column_Writer;
+    public static ImageButton imgButton;
 
     //public static boolean running = false;
+
+    static Context v;
 
     public int time;
 
@@ -113,6 +116,17 @@ public class ColumnLoader extends AsyncTask<String, String, String>{
     protected void onPostExecute(String s) {
         JsonDecoding(s);
         OnLoadUI();
+
+        v = LA;
+        imgButton.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(v,ColumnViewActivity.class);
+                intent1.putExtra("Column", tmpColumn);
+                v.startActivities(new Intent[]{intent1});
+            }
+        });
     }
 
     public void JsonDecoding(String userscore) {
@@ -153,7 +167,7 @@ public class ColumnLoader extends AsyncTask<String, String, String>{
         View feedview = null;
         Button button1 = null;
         URL imageSource = null;
-        ImageButton imgButton = null;
+
         TextView TextTrue = null;
         TextView TextFalse = null;
         TextView TextViewNum = null;
@@ -183,9 +197,9 @@ public class ColumnLoader extends AsyncTask<String, String, String>{
         button1.setText(Agency);
         try {
             TextTitle.setText(Column_TItle);
-            TextTrue.setText("True: " + String.valueOf(Column_TrueNum));
-            TextFalse.setText("False: " + String.valueOf(Column_FalseNum));
-            TextViewNum.setText("Views: " + String.valueOf(Column_ViewNum));
+            TextTrue.setText(String.valueOf(Column_TrueNum));
+            TextFalse.setText(String.valueOf(Column_FalseNum));
+            TextViewNum.setText(String.valueOf(Column_ViewNum));
             TextDate.setText(String.valueOf(Column_Date));
         } catch (Exception e){
             e.printStackTrace();

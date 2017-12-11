@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 상단 액션바-->
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/maintoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E7AB9B"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/maintoolbar_text"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:fontFamily="@font/inpamedium"
+            android:text="VERITE"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="8dp" />
+    </android.support.v7.widget.Toolbar>
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/maintoolbar"
+        app:srcCompat="@drawable/verite_icon_whtie"
+        android:layout_marginLeft="24dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="474dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.23000002">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="신문사명"
+                app:layout_constraintBottom_toTopOf="@+id/thumbnail"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginLeft="24dp"/>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="256dp"
+                android:background="@drawable/shadw"
+                android:paddingBottom="10dp">
+
+                <LinearLayout
+                    android:id="@+id/articleinfo"
+                    android:layout_width="369dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageButton
+                        android:id="@+id/thumbnail"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"/>
+
+                    <TextView
+                        android:id="@+id/show_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="23dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="여기는 기사제목이 들어가는 란이다."
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/thumbnail"
+                        android:layout_marginLeft="8dp" />
+
+                    <TextView
+                        android:id="@+id/show_url"
+                        android:layout_width="match_parent"
+                        android:layout_height="23dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:text="여기는 URL이 들어가는 란이다."
+                        android:textColor="#999999"
+                        android:textSize="8sp"
+                        tools:layout_editor_absoluteX="3dp"
+                        tools:layout_editor_absoluteY="272dp"
+                        android:layout_marginLeft="8dp" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/false_button"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/falsebutton_selected"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.85"
+                    app:layout_constraintStart_toStartOf="@+id/true_button"
+                    app:layout_constraintTop_toBottomOf="@+id/articleinfo"
+                    android:layout_marginRight="16dp" />
+
+                <Button
+                    android:id="@+id/true_button"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/truebutton_seleted"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.15"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/articleinfo"
+                    android:layout_marginLeft="16dp" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/shadw"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/true_default" />
+
+                <TextView
+                    android:id="@+id/true_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:text="22" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/false_default" />
+
+                <TextView
+                    android:id="@+id/false_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:text="20" />
+
+                <Button
+                    android:id="@+id/reply_button"
+                    android:layout_width="15dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/replybutton" />
+
+                <Button
+                    android:id="@+id/reply_text"
+                    android:layout_width="59dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#00ffffff"
+                    android:paddingLeft="-10dp"
+                    android:text="댓글달기" />
+
+                <Button
+                    android:id="@+id/share_button"
+                    android:layout_width="15dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/share_option" />
+
+                <Button
+                    android:id="@+id/share_text"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#00ffffff"
+                    android:paddingLeft="-10dp"
+                    android:text="공유하기" />
+
+                <Button
+                    android:id="@+id/popup_button"
+                    android:layout_width="8dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/popup" />
+
+            </LinearLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/user_thumb"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/user_default_icon"
+                    android:layout_marginLeft="16dp" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="20dp"
+                    android:text="전모씨"
+                    app:layout_constraintStart_toEndOf="@+id/user_thumb"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginLeft="24dp" />
+
+                <TextView
+                    android:id="@+id/reply_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:text="2017-08-02"
+                    app:layout_constraintEnd_toStartOf="@+id/pupup_button2"
+                    app:layout_constraintStart_toEndOf="@+id/user_name"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/reply_textbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:text="여기는 댓글이 들어가는 란이다."
+                    app:layout_constraintStart_toEndOf="@+id/user_thumb"
+                    app:layout_constraintTop_toBottomOf="@+id/user_name"
+                    android:layout_marginLeft="24dp" />
+
+                <Button
+                    android:id="@+id/pupup_button2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/popup"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginRight="8dp" />
+            </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

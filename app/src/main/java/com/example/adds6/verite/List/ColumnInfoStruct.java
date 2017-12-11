@@ -1,10 +1,12 @@
 package com.example.adds6.verite.List;
 
+import java.io.Serializable;
+
 /**
  * Created by adds6 on 2017-12-10.
  */
 
-public class ColumnInfoStruct {
+public class ColumnInfoStruct implements Serializable {
 
     // 칼럼 정보를 담는 변수들
     public static int Column_ID;
