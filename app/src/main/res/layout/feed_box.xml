@@ -25,8 +25,8 @@
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
-                android:text="땡떙일보"
-                android:background="#00ffffff"/>
+                android:background="#00ffffff"
+                android:text="중앙일보" />
 
             <Button
                 android:id="@+id/Feed_Hot"
@@ -46,18 +46,19 @@
             android:id="@+id/Feed_Image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:background="@drawable/asdasd"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/Feed_title"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="제목을 한번 써보면 좋을듯 하다"
-            android:gravity="center"
             android:background="@drawable/border"
+            android:gravity="center"
+            android:text="[사설] 북한은 조건 없는 미국의 대화 제의 수용하라"
+            tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="250dp"
-            tools:ignore="MissingConstraints" />
+            tools:layout_editor_absoluteY="250dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"

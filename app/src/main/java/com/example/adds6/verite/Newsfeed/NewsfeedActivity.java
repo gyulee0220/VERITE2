@@ -126,11 +126,9 @@ public class NewsfeedActivity extends Activity {
             ColumnLoader columnLoader = new ColumnLoader();
             columnLoader.Init(this,i);
             System.out.println("fffffffffff"+i);
-            columnLoader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"http://13.125.66.109/Columnload.php?id=" + select[i]);
+            columnLoader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"http://13.125.66.109/Columnload.php");
         }
 
     }
 
 }
-
-
